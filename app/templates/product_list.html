@@ -1,0 +1,28 @@
+<table border="1">
+    <tr>
+        <th>stt</th>
+        <th>category</th>
+        <th>code</th>
+        <th>name</th>
+        <th>price</th>
+        <th>description</th>
+        <th>image</th>
+        <th>tinh nang</th>
+    </tr>
+    {%for p in productList%}
+    <tr>
+        <td>{{forloop.counter}}</td>
+        <td>{{p.category}}</td>
+        <td>{{p.code}}</td>
+        <td>{{p.name}}</td>
+        <td>{{p.price}}</td>
+        <td>{{p.description}}</td>
+        <td><img style="max-height:200px" src="/{{p.image}}"></td>
+        <td>
+            <a href="{%url 'product-update' p.id %}">Chinh Sua</a>
+            <a href="{%url 'product-delete' p.id %}">Xoa</a>
+        </td>
+    </tr>
+    {%endfor%}
+</table>
+<a href="{%url 'product-create' %}">them moi san pham</a>

@@ -44,9 +44,7 @@ def listCategory(request):
 
 
 
-    # def index(request):
-    #     context = {'products': products}
-    #     return render(request, 'index.html', context)
+
     # def createCategory(request):
     #     return render(request,'category_form.html')
     # def updateCategory(request,id):
@@ -55,3 +53,32 @@ def listCategory(request):
     #     return redirect('category-list')
     # def listCategory(request):
     #     return render(request,'category_list.html')
+def listProduct(request):
+    productList=Product.objects.all()
+    return render(request,'product_list.html',{'productList':productList})
+
+def createProduct(request):
+    form=ProductForm()
+    if request.method=='POST':
+        form =ProductForm(request.POST,request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('home')
+    return render(request,'product_form.html',{'form':form})
+
+def updateProduct(request,id):
+    product = get_object_or_404(Product, pk=id)
+    form = ProductForm(instance=product)
+    if request.method == 'POST':
+        form = ProductForm(request.POST, instance=product)
+        if form.is_valid():
+            form.save()
+            return redirect('product-list')
+
+    # return render(request, 'category_form.html', {'form': form})
+    return render(request,'product_form.html',{'form':form})
+
+def deleteProduct(request,id):
+    c=get_object_or_404(Product,pk=id)
+    c.delete()
+    return redirect('product-list')
