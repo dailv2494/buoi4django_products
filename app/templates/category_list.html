@@ -1,0 +1,22 @@
+<table border="1">
+    <tr>
+        <th>stt</th>
+        <th>ma</th>
+        <th>ten</th>
+        <th>chuc nang</th>
+    </tr>
+    {%for c in categoryList %}
+        <tr>
+            <td>{{forloop.counter}}</td>
+            <td>{{c.code}}</td>
+            <td>{{c.name}}</td>
+            <td>
+                <a href="{% url 'category-update' c.id %}">Chinh Sua</a>
+                <a href="{% url 'category-delete' c.id %}">Xoa</a>
+            </td>
+        </tr>
+{%endfor%}
+</table>
+
+
+<a href="{% url 'category-create' %}">them san pham</a>
