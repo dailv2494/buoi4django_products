@@ -8,8 +8,7 @@ products = [
 
 
 def index(request):
-    context = {'products': products}
-    return render(request, 'index.html', context)
+    return render(request, 'index.html',)
 
 def createCategory(request):
     form=CategoryForm()
@@ -39,11 +38,6 @@ def deleteCategory(request,id):
 def listCategory(request):
     categoryList=Category.objects.all()
     return render(request,'category_list.html',{'categoryList':categoryList})
-
-
-
-
-
 
     # def createCategory(request):
     #     return render(request,'category_form.html')
